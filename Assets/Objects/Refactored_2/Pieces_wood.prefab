@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 7235606846916990323}
   - component: {fileID: 7956872054358150360}
   - component: {fileID: 6291132946714098434}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pieces_wood
-  m_TagString: Untagged
+  m_TagString: Pieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

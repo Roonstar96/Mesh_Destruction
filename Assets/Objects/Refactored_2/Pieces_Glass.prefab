@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 5321409026554178062}
   - component: {fileID: 5321409026554178061}
   - component: {fileID: 5321409026554178060}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pieces_Glass
-  m_TagString: Untagged
+  m_TagString: Pieces
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
