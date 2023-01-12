@@ -256,12 +256,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 367118451}
   newPiece: {fileID: 6788804434715019593, guid: 5f63a253788c2b74abf2c16ecc77e999, type: 3}
-  rowX: 0
-  rowY: 0
-  rowZ: 0
-  newScaleX: 0
-  newScaleY: 0
-  newScaleZ: 0
+  isBrick: 0
+  isConcrete: 0
+  isGlass: 0
+  isWood: 0
 --- !u!54 &367118453
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -311,7 +309,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3b839e30db6df4645ad298729b6d19b5, type: 2}
+  - {fileID: 2100000, guid: a747f3e22dc385c4cb43956da58417fd, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -420,7 +418,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 563222399}
-  speed: 1
+  speed: 2
 --- !u!143 &563222399
 CharacterController:
   m_ObjectHideFlags: 0
@@ -509,7 +507,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c3a26237bc945fa4c9c814060493bc5e, type: 2}
+  - {fileID: 2100000, guid: 446bd2cf0f727c247802ec0c8a1573fc, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -568,12 +566,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 609697706}
   newPiece: {fileID: 5321409026554178059, guid: a372c1262e124e24f85d68bef762e1de, type: 3}
-  rowX: 0
-  rowY: 0
-  rowZ: 0
-  newScaleX: 0
-  newScaleY: 0
-  newScaleZ: 0
+  isBrick: 1
+  isConcrete: 1
+  isGlass: 0
+  isWood: 0
 --- !u!1 &669014255
 GameObject:
   m_ObjectHideFlags: 0
@@ -801,12 +797,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 739545640}
   newPiece: {fileID: 3366653227746109111, guid: d2544abc00d0baf4dae5ce07391fda43, type: 3}
-  rowX: 0
-  rowY: 0
-  rowZ: 0
-  newScaleX: 0
-  newScaleY: 0
-  newScaleZ: 0
+  isBrick: 0
+  isConcrete: 0
+  isGlass: 0
+  isWood: 0
 --- !u!54 &739545642
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -856,7 +850,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 634a4fc507125984386feadc48c72fa2, type: 2}
+  - {fileID: 2100000, guid: ad74914c5587af2429dd05816a85d48f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1117,12 +1111,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   parent: {fileID: 1489196774}
   newPiece: {fileID: 8481349337241607759, guid: 69b0e959276381d41895e669ef9afb5b, type: 3}
-  rowX: 0
-  rowY: 0
-  rowZ: 0
-  newScaleX: 0
-  newScaleY: 0
-  newScaleZ: 0
+  isBrick: 0
+  isConcrete: 0
+  isGlass: 0
+  isWood: 0
 --- !u!54 &1489196776
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1172,7 +1164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: be1ac69c08966124daf31f953db42aa4, type: 2}
+  - {fileID: 2100000, guid: a9a3b9da293373c4384aab1ded7d2bc2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
