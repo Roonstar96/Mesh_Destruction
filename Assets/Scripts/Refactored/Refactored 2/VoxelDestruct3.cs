@@ -41,15 +41,17 @@ public class VoxelDestruct3 : MonoBehaviour
         pScaleX = (parent.transform.localScale.x) / 2;
         pScaleY = (parent.transform.localScale.y) / 2;
         pScaleZ = (parent.transform.localScale.z) / 2;
+
+        ReplaceParent();
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Bullet")
         {
             ReplaceParent();
         }
-    }
+    }*/
 
     private void ReplaceParent()
     {
