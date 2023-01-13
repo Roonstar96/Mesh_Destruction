@@ -33,6 +33,12 @@ public class BulletImpact : MonoBehaviour
                 colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
                 colHit.GetComponent<Rigidbody>().AddExplosionForce(blastPower, blastPoint, blastRadius, 1, ForceMode.Impulse);
             }
+
+            else if (colHit.GetComponent<Rigidbody>() == true)
+            {
+                colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
+                colHit.GetComponent<Rigidbody>().AddExplosionForce((blastPower / 10), blastPoint, (blastRadius / 10), 1, ForceMode.Impulse);
+            }
         }
     }
 

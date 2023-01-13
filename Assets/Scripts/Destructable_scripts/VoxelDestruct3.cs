@@ -11,11 +11,6 @@ public class VoxelDestruct3 : MonoBehaviour
     [SerializeField] private GameObject parent;
     [SerializeField] private GameObject newPiece;
 
-    [SerializeField] private bool isBrick;
-    [SerializeField] private bool isConcrete;
-    [SerializeField] private bool isGlass;
-    [SerializeField] private bool isWood;
-
     //NOTE: The dimensions of the object being destroyed
     private float rowX;
     private float rowY;
@@ -31,45 +26,6 @@ public class VoxelDestruct3 : MonoBehaviour
     private float pScaleX;
     private float pScaleY;
     private float pScaleZ;
-
-    //NOTE: The OnValidate is used to make sure that only 1 matirial is selected for an object.
-    // All tick boxes are untiecked except the first one that was selected
-    private void OnValidate()
-    {
-        int countTrue = 0;
-        int firstTrue = 0;
-        int i = 0;
-
-        bool[] boolChecker = new bool[4] { isBrick, isConcrete, isGlass, isWood };
-
-        while (i < boolChecker.Length)
-        {
-            if (boolChecker[i] == true)
-            {
-                countTrue += 1;
-
-                if (firstTrue == 0)
-                {
-                    firstTrue = i;
-                }
-            }
-
-            if (countTrue > 1)
-            {
-                boolChecker[0] = false;
-                boolChecker[1] = false;
-                boolChecker[2] = false;
-                boolChecker[3] = false;
-                boolChecker[firstTrue] = true;
-                Debug.Log("First to be selected: " + (firstTrue + 1));
-                Debug.Log("Only one can be selected at a time");
-
-                break;
-            }
-
-            i++;
-        }
-    }
 
     //NOTE: define the varibles for instantiaing the pieces ones parent obejct is destroyed
     private void Start()
@@ -128,3 +84,4 @@ public class VoxelDestruct3 : MonoBehaviour
         pieces.SetActive(true);
     }
 }
+

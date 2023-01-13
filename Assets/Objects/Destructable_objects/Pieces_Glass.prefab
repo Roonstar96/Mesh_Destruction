@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5321409026554178062}
   - component: {fileID: 5321409026554178061}
   - component: {fileID: 5321409026554178060}
+  - component: {fileID: 3814115786995753591}
   m_Layer: 6
   m_Name: Pieces_Glass
   m_TagString: Pieces
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5321409026554178059}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.7066135, y: 1.6133603, z: 2.7747328}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.4, y: 0.4, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -97,3 +98,21 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3814115786995753591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5321409026554178059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde1b568025803942b746d39f3990946, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parent: {fileID: 5321409026554178059}
+  newPiece: {fileID: 0}
+  isBrick: 0
+  isConcrete: 0
+  isGlass: 1
+  isWood: 0

@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shooter: {fileID: 6412713273250475922, guid: c18f6400fa9a5de4f91115b1737e780d, type: 3}
   blastRadius: 0.5
-  blastPower: 50
+  blastPower: 30
   blastLayers:
     serializedVersion: 2
     m_Bits: 64
