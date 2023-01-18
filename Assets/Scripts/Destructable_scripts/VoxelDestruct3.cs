@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//SUMMARY: This script is responsible for generating mulitple small prefabs to replace and
+//simulate a larger object, so that it breaks into pieces when it is dedtroyed. 
 public class VoxelDestruct3 : MonoBehaviour
 {
-
-    //SUMMARY: All variables for the object being destroyed, its debris
+    //NOTE: All variables for the object being destroyed, its debris
     // & other variables for instantiating the debris in the correct position
     // as well as adjusting the debirs ehaviour depending on its material
     [SerializeField] private GameObject parent;
@@ -44,20 +45,10 @@ public class VoxelDestruct3 : MonoBehaviour
         ReplaceParent();
     }
 
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Bullet")
-        {
-            ReplaceParent();
-        }
-    }*/
-
     //SUMMARY: Which each loop, the CreatePieces functino is called to spawn the pieces prefab
     // to replace the origianl object when is being destroyed
     private void ReplaceParent()
     {
-        parent.SetActive(false);
-
         for (float x = 0; x < rowX; x+= newScaleX)
         {
             for (float y = 0; y < rowY; y+= newScaleY)
@@ -68,7 +59,7 @@ public class VoxelDestruct3 : MonoBehaviour
                 }
             }
         }
-
+        Destroy(parent);
     }
 
     private void CreatePieces(float x, float y, float z)
@@ -82,6 +73,7 @@ public class VoxelDestruct3 : MonoBehaviour
             (newScaleZ + z) - pScaleZ);
 
         pieces.SetActive(true);
+        pieces.AddComponent<VoxelPieces>();
     }
 }
 

@@ -34,6 +34,9 @@ public class BulletImpact : MonoBehaviour
                 colHit.GetComponent<Rigidbody>().AddExplosionForce(blastPower, blastPoint, blastRadius, 1, ForceMode.Impulse);
             }
 
+
+            //TODO: Fix issue with objects still flying everywhere when hit. 
+            //try to do somthing involving the velocity of the bullet
             else if (colHit.GetComponent<Rigidbody>() == true)
             {
                 colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
