@@ -50,27 +50,26 @@ public class VoxelPieces : MonoBehaviour
 
         mesh = parent.GetComponent<MeshRenderer>();
 
-        if (mesh.material.name == "material_brickTEX")
+        Debug.Log("Material: " + mesh.material.name);
+
+        if (mesh.material.name == "material_brickTEX (Instance)")
         {
-            ScaleFactor = 2f;
+            newPiece.transform.localScale = new Vector3(0.4f, 0.1f, 0.1f);
+        }
+        if(mesh.material.name == "material_concreteTEX (Instance)")
+        {
+            newPiece.transform.localScale = new Vector3(0.5f, 0.15f, 0.05f);
+        }
+        if(mesh.material.name == "material_glassTEX (Instance)")
+        {
+            newPiece.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+        }
+        if(mesh.material.name == "material_woodTEX (Instance)")
+        {
+            newPiece.transform.localScale = new Vector3(0.5f, 0.15f, 0.05f);
         }
 
-        if (mesh.material.name == "material_concreteTEX")
-        {
-            ScaleFactor = 3f;
-        }
-
-        if (mesh.material.name == "material_glassTEX")
-        {
-            ScaleFactor = 4f;
-        }
-
-        if (mesh.material.name == "material_woodTEX")
-        {
-            ScaleFactor = 2f;
-        }
-
-        Debug.Log("Current scale: " + ScaleFactor);
+        Debug.Log("Current scale: " + newPiece.transform.localScale.x + newPiece.transform.localScale.y + newPiece.transform.localScale.z);
     }
 
     //NOTE: define the varibles for instantiaing the pieces ones parent obejct is destroyed
@@ -80,9 +79,9 @@ public class VoxelPieces : MonoBehaviour
         rowY = parent.transform.localScale.y;
         rowZ = parent.transform.localScale.z;
 
-        newScaleX = newPiece.transform.localScale.x / ScaleFactor;
-        newScaleY = newPiece.transform.localScale.y / ScaleFactor;
-        newScaleZ = newPiece.transform.localScale.z / ScaleFactor;
+        newScaleX = newPiece.transform.localScale.x;
+        newScaleY = newPiece.transform.localScale.y;
+        newScaleZ = newPiece.transform.localScale.z;
 
         pScaleX = (parent.transform.localScale.x) / 2;
         pScaleY = (parent.transform.localScale.y) / 2;
@@ -95,12 +94,13 @@ public class VoxelPieces : MonoBehaviour
     // to replace the origianl object when is being destroyed
     private void ReplaceParent()
     {
-        for (float x = 0; x < rowX; x += newScaleX)
+        for (float x = 0; x <= rowX; x += newScaleX)
         {
-            for (float y = 0; y < rowY; y += newScaleY)
+            for (float y = 0; y <= rowY; y += newScaleY)
             {
-                for (float z = 0; z < rowZ; z += newScaleZ)
+                for (float z = 0; z <= rowZ; z += newScaleZ)
                 {
+                    Debug.Log(x + y + z);
                     CreatePieces(x, y, z);
                 }
             }
@@ -116,52 +116,19 @@ public class VoxelPieces : MonoBehaviour
         GameObject pieces;
         pieces = GameObject.Instantiate(newPiece, parent.transform.position, Quaternion.identity);
 
-        pieces.AddComponent<DestroyPieces>();
-        Component vox = pieces.GetComponent<VoxelPieces>();
-        Destroy(vox);
-
         //pieces.transform.localScale = transform.localScale / ScaleFactor;
-        pieces.transform.localScale = new Vector3(newScaleX, newScaleY, newScaleZ);
+        //pieces.transform.localScale = new Vector3(newScaleX, newScaleY, newScaleZ);
 
         pieces.transform.position = transform.position + new Vector3(
             (newScaleX + x) - pScaleX,
             (newScaleY + y) - pScaleY,
             (newScaleZ + z) - pScaleZ);
-        
+
+        pieces.AddComponent<DestroyPieces>();
+        Component vox = pieces.GetComponent<VoxelPieces>();
+        Debug.Log("Component to destroy: " + vox);
+        Destroy(vox);
+
         pieces.SetActive(true);
     }
-
-
-    //NOTE: The OnValidate is used to make sure that only 1 matirial is selected for an object.
-    // All tick boxes are untiecked except the first one that was selected
-    /*private void OnValidate()
-    {
-        if (isBrick)
-        {
-            isConcrete = false;
-            isGlass = false;
-            isWood = false;
-        }
-
-        if (isConcrete)
-        {
-            isBrick = false;
-            isGlass = false;
-            isWood = false;
-        }
-
-        if (isGlass)
-        {
-            isBrick = false;
-            isConcrete = false;
-            isWood = false;
-        }
-
-        if (isWood)
-        {
-            isBrick = false;
-            isConcrete = false;
-            isGlass = false;
-        }
-    }*/
 }
