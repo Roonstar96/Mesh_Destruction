@@ -35,12 +35,13 @@ public class BulletImpact : MonoBehaviour
             }
 
 
-            //TODO: Fix issue with objects still flying everywhere when hit. 
-            //try to do somthing involving the velocity of the bullet
+            //This adds a new script to the peices, that break them down even smaller
+            //The blast power and readius is also reduced to prevent peices from flying over the horizon
             else if (colHit.GetComponent<Rigidbody>() == true)
             {
-                colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
-                colHit.GetComponent<Rigidbody>().AddExplosionForce((blastPower / 10), blastPoint, (blastRadius / 10), 1, ForceMode.Impulse);
+                colHit.gameObject.AddComponent<VoxelPieces>(); 
+                colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward;
+                colHit.GetComponent<Rigidbody>().AddExplosionForce((blastPower / 100), blastPoint, (blastRadius / 10), 1, ForceMode.Impulse);
             }
         }
     }

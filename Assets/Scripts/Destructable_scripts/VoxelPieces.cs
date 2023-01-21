@@ -14,13 +14,12 @@ public class VoxelPieces : MonoBehaviour
     [SerializeField] private GameObject newPiece;
     [SerializeField] private MeshRenderer mesh;
 
-    [SerializeField] private bool isBrick;
-    [SerializeField] private bool isConcrete;
-    [SerializeField] private bool isGlass;
-    [SerializeField] private bool isWood;
+    //[SerializeField] private bool isBrick;
+    //[SerializeField] private bool isConcrete;
+    //[SerializeField] private bool isGlass;
+    //[SerializeField] private bool isWood;
 
     private float ScaleFactor;
-    //private int hitCount;
 
     //NOTE: The dimensions of the object being destroyed
     private float rowX;
@@ -43,40 +42,35 @@ public class VoxelPieces : MonoBehaviour
         //NOTE: the script sees what the material of the object is, based on that
         //the new piecs are rescaled, for when they are hit by a bullet and 
         //destroyed further.
-        if (isBrick)
-        {
-            ScaleFactor = 2;
-        }
 
-        if (isConcrete)
-        {
-            ScaleFactor = 3f;
-        }
+        parent = gameObject;
+        newPiece = gameObject;
 
-        if (isGlass)
-        {
-            ScaleFactor = 4f;
-        }
+        Debug.Log("Current game object: " + parent + newPiece);
 
-        if (isWood)
+        mesh = parent.GetComponent<MeshRenderer>();
+
+        if (mesh.material.name == "material_brickTEX")
         {
             ScaleFactor = 2f;
         }
 
-        parent = gameObject;
-        newPiece = gameObject;
-        Debug.Log("Current game object: " + parent + newPiece);
-        
-
-        //TODO: Keep working on this to replace the bool if statements
-        // see if this is feasible with the small amount of objects 
-        mesh = parent.GetComponent<MeshRenderer>();
-
-        if(mesh.material.name == "material_glassTEX")
+        if (mesh.material.name == "material_concreteTEX")
         {
-
+            ScaleFactor = 3f;
         }
 
+        if (mesh.material.name == "material_glassTEX")
+        {
+            ScaleFactor = 4f;
+        }
+
+        if (mesh.material.name == "material_woodTEX")
+        {
+            ScaleFactor = 2f;
+        }
+
+        Debug.Log("Current scale: " + ScaleFactor);
     }
 
     //NOTE: define the varibles for instantiaing the pieces ones parent obejct is destroyed
@@ -93,18 +87,8 @@ public class VoxelPieces : MonoBehaviour
         pScaleX = (parent.transform.localScale.x) / 2;
         pScaleY = (parent.transform.localScale.y) / 2;
         pScaleZ = (parent.transform.localScale.z) / 2;
+        ReplaceParent();
 
-        Debug.Log("Varibles set");
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Bullet" || other.tag == "Floor")
-        {
-            ReplaceParent();
-            Debug.Log("Is hit");
-            //FinalDestruction();
-        }
     }
 
     //SUMMARY: Which each loop, the CreatePieces functino is called to spawn the pieces prefab
@@ -124,14 +108,21 @@ public class VoxelPieces : MonoBehaviour
         Destroy(parent);
     }
 
+    //NOTE: Similar to the CreatePieces funciton in VoxelDestruction3 this function istead
+    // add DestroyPiece script then removes the VoxelDestruction3 script from the cloned object
+    // and reduces their size based on their material
     private void CreatePieces(float x, float y, float z)
     {
         GameObject pieces;
         pieces = GameObject.Instantiate(newPiece, parent.transform.position, Quaternion.identity);
 
         pieces.AddComponent<DestroyPieces>();
+        Component vox = pieces.GetComponent<VoxelPieces>();
+        Destroy(vox);
 
-        pieces.transform.localScale = transform.localScale / ScaleFactor;
+        //pieces.transform.localScale = transform.localScale / ScaleFactor;
+        pieces.transform.localScale = new Vector3(newScaleX, newScaleY, newScaleZ);
+
         pieces.transform.position = transform.position + new Vector3(
             (newScaleX + x) - pScaleX,
             (newScaleY + y) - pScaleY,
@@ -143,7 +134,7 @@ public class VoxelPieces : MonoBehaviour
 
     //NOTE: The OnValidate is used to make sure that only 1 matirial is selected for an object.
     // All tick boxes are untiecked except the first one that was selected
-    private void OnValidate()
+    /*private void OnValidate()
     {
         if (isBrick)
         {
@@ -172,5 +163,5 @@ public class VoxelPieces : MonoBehaviour
             isConcrete = false;
             isGlass = false;
         }
-    }
+    }*/
 }

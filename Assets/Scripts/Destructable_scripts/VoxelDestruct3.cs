@@ -73,7 +73,6 @@ public class VoxelDestruct3 : MonoBehaviour
             (newScaleZ + z) - pScaleZ);
 
         pieces.SetActive(true);
-        pieces.AddComponent<VoxelPieces>();
     }
 }
 
