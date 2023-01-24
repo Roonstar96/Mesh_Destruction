@@ -26,7 +26,7 @@ public class BulletImpact : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Speed: " + bullet.velocity);
+        //Debug.Log("Speed: " + bullet.velocity);
     }
 
     //TODO: Bet the bullets speed, have it so the collision detections only works at a certain speed and above
@@ -34,24 +34,34 @@ public class BulletImpact : MonoBehaviour
     {
         if (collision.gameObject.transform.root.CompareTag("Pieces"))
         {
-            if (speed.x >= 20)
+            /*if (speed.x >= 20)
             {
 
-            }
+            }*/
             if (collision.gameObject.GetComponent<Rigidbody>() == null)
             {
-                ExplodeObjects(collision.contacts[0].point);
+                Debug.Log("Has no RigidBody");
+                ExplodeBigObjects(collision.contacts[0].point);
             }
 
             else if (collision.gameObject.GetComponent<Rigidbody>() == true)
             {
-                ExplodeSmallObjects(collision.contacts[0].point);
+                if (collision.gameObject.GetComponent<DestroyPieces>() == true)
+                {
+                    Debug.Log("Has RigidBody & DP script");
+                    ExplodeSmallObjects(collision.contacts[0].point);
+                }
+                else
+                {
+                    Debug.Log("Has RigidBody");
+                    ExplodeIntoSmallObjects(collision.contacts[0].point);
+                }
             }
         }
     }
 
     //NOTE: This fucntion adds forces to objects in a set radius from the bullets impact
-    private void ExplodeObjects(Vector3 blastPoint)
+    private void ExplodeBigObjects(Vector3 blastPoint)
     {
         collidersHit = Physics.OverlapSphere(blastPoint, blastRadius, blastLayers);
 
@@ -61,28 +71,46 @@ public class BulletImpact : MonoBehaviour
 
             colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
             colHit.GetComponent<Rigidbody>().AddExplosionForce(blastPower, blastPoint, blastRadius, 1, ForceMode.Impulse);
+
+            Destroy(this.gameObject);
         }
     }
 
     //NOTE: This funcitons is similar to the one abouve except adds a new script to the peices,
     //that break them down even smaller. The blast power and readius is also reduced 
+    private void ExplodeIntoSmallObjects(Vector3 blastPoint)
+    {
+        collidersHit = Physics.OverlapSphere(blastPoint, blastRadius, blastLayers);
+
+        foreach (Collider colHit in collidersHit)
+        {
+            colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
+            colHit.GetComponent<Rigidbody>().AddExplosionForce((blastPower), blastPoint, (blastRadius), 1, ForceMode.Impulse);
+
+            colHit.gameObject.AddComponent<VoxelPieces>();
+
+            Destroy(this.gameObject);
+        }
+    }
+
+    //NOTE: Just like the above functions, this one is only called if the piece hit is the
+    //smallest it can get. This prevents an infinite loop of pieces instatiating 
     private void ExplodeSmallObjects(Vector3 blastPoint)
     {
         collidersHit = Physics.OverlapSphere(blastPoint, blastRadius, blastLayers);
 
         foreach (Collider colHit in collidersHit)
         {
-            colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward;
-            colHit.GetComponent<Rigidbody>().AddExplosionForce((blastPower / 100), blastPoint, (blastRadius / 10), 1, ForceMode.Impulse);
+            colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
+            colHit.GetComponent<Rigidbody>().AddExplosionForce((blastPower), blastPoint, (blastRadius), 1, ForceMode.Impulse);
 
-            colHit.gameObject.AddComponent<VoxelPieces>();
-
+            Destroy(this.gameObject);
         }
     }
 
     IEnumerator DestroyPiece()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
 

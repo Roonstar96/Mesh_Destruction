@@ -114,7 +114,13 @@ public class VoxelPieces : MonoBehaviour
     private void CreatePieces(float x, float y, float z)
     {
         GameObject pieces;
-        pieces = GameObject.Instantiate(newPiece, parent.transform.position, Quaternion.identity);
+        pieces = GameObject.Instantiate(newPiece, parent.transform.position, parent.transform.rotation);
+
+        //NOTE: Removing this component prevents an infinite number of smaller & smaller peices 
+        // from instantiating
+        Component vox = pieces.GetComponent<VoxelPieces>();
+        Debug.Log("Component 2 to destroy: " + vox);
+        Destroy(vox);
 
         //pieces.transform.localScale = transform.localScale / ScaleFactor;
         //pieces.transform.localScale = new Vector3(newScaleX, newScaleY, newScaleZ);
@@ -125,9 +131,6 @@ public class VoxelPieces : MonoBehaviour
             (newScaleZ + z) - pScaleZ);
 
         pieces.AddComponent<DestroyPieces>();
-        Component vox = pieces.GetComponent<VoxelPieces>();
-        Debug.Log("Component to destroy: " + vox);
-        Destroy(vox);
 
         pieces.SetActive(true);
     }

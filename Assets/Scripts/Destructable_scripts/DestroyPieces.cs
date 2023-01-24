@@ -12,7 +12,7 @@ public class DestroyPieces : MonoBehaviour
     }
     IEnumerator DestroyPiece()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(10);
         Destroy(gameObject);
     }
 }
