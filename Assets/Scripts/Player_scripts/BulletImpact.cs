@@ -12,7 +12,7 @@ public class BulletImpact : MonoBehaviour
     [SerializeField] private Rigidbody bullet;
     [SerializeField] private float blastRadius;
     [SerializeField] private float blastPower;
-
+    [SerializeField] private bool _isShooting;
     private Collider[] collidersHit;
     private Vector3 speed;
     public LayerMask blastLayers;
@@ -22,6 +22,7 @@ public class BulletImpact : MonoBehaviour
         bullet = GetComponent<Rigidbody>();
         speed = bullet.velocity; 
         StartCoroutine(DestroyPiece());
+        _isShooting = true;
     }
 
     private void Update()
@@ -33,11 +34,7 @@ public class BulletImpact : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.transform.root.CompareTag("Pieces"))
-        {
-            /*if (speed.x >= 20)
-            {
-
-            }*/
+        {   
             if (collision.gameObject.GetComponent<Rigidbody>() == null)
             {
                 Debug.Log("Has no RigidBody");
@@ -54,7 +51,7 @@ public class BulletImpact : MonoBehaviour
                 else
                 {
                     Debug.Log("Has RigidBody");
-                    ExplodeIntoSmallObjects(collision.contacts[0].point);
+                    StartCoroutine(ExplodeIntoSmallObjects(collision.contacts[0].point));
                 }
             }
         }
@@ -64,31 +61,27 @@ public class BulletImpact : MonoBehaviour
     private void ExplodeBigObjects(Vector3 blastPoint)
     {
         collidersHit = Physics.OverlapSphere(blastPoint, blastRadius, blastLayers);
-
         foreach (Collider colHit in collidersHit)
         {
             colHit.gameObject.AddComponent<Rigidbody>();
-
             colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
             colHit.GetComponent<Rigidbody>().AddExplosionForce(blastPower, blastPoint, blastRadius, 1, ForceMode.Impulse);
-
             Destroy(this.gameObject);
         }
     }
 
     //NOTE: This funcitons is similar to the one abouve except adds a new script to the peices,
     //that break them down even smaller. The blast power and readius is also reduced 
-    private void ExplodeIntoSmallObjects(Vector3 blastPoint)
-    {
+    private IEnumerator ExplodeIntoSmallObjects(Vector3 blastPoint)
+    { 
         collidersHit = Physics.OverlapSphere(blastPoint, blastRadius, blastLayers);
-
         foreach (Collider colHit in collidersHit)
         {
             colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
             colHit.GetComponent<Rigidbody>().AddExplosionForce((blastPower), blastPoint, (blastRadius), 1, ForceMode.Impulse);
 
+            yield return new WaitForSeconds(0.5f);
             colHit.gameObject.AddComponent<VoxelPieces>();
-
             Destroy(this.gameObject);
         }
     }
@@ -98,12 +91,10 @@ public class BulletImpact : MonoBehaviour
     private void ExplodeSmallObjects(Vector3 blastPoint)
     {
         collidersHit = Physics.OverlapSphere(blastPoint, blastRadius, blastLayers);
-
         foreach (Collider colHit in collidersHit)
         {
             colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
             colHit.GetComponent<Rigidbody>().AddExplosionForce((blastPower), blastPoint, (blastRadius), 1, ForceMode.Impulse);
-
             Destroy(this.gameObject);
         }
     }
@@ -113,5 +104,4 @@ public class BulletImpact : MonoBehaviour
         yield return new WaitForSeconds(3);
         Destroy(gameObject);
     }
-
 }
