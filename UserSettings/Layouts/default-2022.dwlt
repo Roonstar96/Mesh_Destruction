@@ -474,10 +474,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 0
-    y: 505.6
-    width: 776.6
-    height: 269.8
+    x: 1536
+    y: 636
+    width: 968
+    height: 355
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -495,22 +495,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Destructable_scripts
+    - Assets/Objects/Player_objects
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts/Destructable_scripts
+  - Assets/Objects/Player_objects
   m_LastFoldersGridSize: -1
   m_LastProjectPath: D:\DestructionGit\Mesh_Destruction
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 165b0000
-    m_LastClickedID: 23318
-    m_ExpandedIDs: 00000000205a0000225a0000245a0000
+    m_SelectedIDs: ec5a0000
+    m_LastClickedID: 23276
+    m_ExpandedIDs: 00000000205a0000225a0000245a0000de5a0000e25a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -563,8 +563,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 1e590000
-    m_LastClickedInstanceID: 22814
+    m_SelectedInstanceIDs: 9c590000
+    m_LastClickedInstanceID: 22940
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
@@ -950,9 +950,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 8.786097, y: -3.7892857, z: 13.83906}
+    m_Target: {x: 13.029842, y: -5.2950025, z: 12.824826}
     speed: 2
-    m_Value: {x: 8.786097, y: -3.7892857, z: 13.83906}
+    m_Value: {x: 13.029842, y: -5.2950025, z: 12.824826}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -998,13 +998,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.16757336, y: 0.627532, z: -0.14074622, w: -0.7472893}
+    m_Target: {x: -0.15536255, y: 0.4200945, z: -0.073250666, w: -0.8911487}
     speed: 2
-    m_Value: {x: -0.16756263, y: 0.62749183, z: -0.1407372, w: -0.74724144}
+    m_Value: {x: -0.15535256, y: 0.4200675, z: -0.07324596, w: -0.8910914}
   m_Size:
-    m_Target: 12.977207
+    m_Target: 16.846054
     speed: 2
-    m_Value: 12.977207
+    m_Value: 16.846054
   m_Ortho:
     m_Target: 0
     speed: 2
