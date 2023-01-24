@@ -87,7 +87,6 @@ public class VoxelPieces : MonoBehaviour
         pScaleY = (parent.transform.localScale.y) / 2;
         pScaleZ = (parent.transform.localScale.z) / 2;
         ReplaceParent();
-
     }
 
     //SUMMARY: Which each loop, the CreatePieces functino is called to spawn the pieces prefab
@@ -115,21 +114,13 @@ public class VoxelPieces : MonoBehaviour
     {
         GameObject pieces;
         pieces = GameObject.Instantiate(newPiece, parent.transform.position, parent.transform.rotation);
-
-        //NOTE: Removing this component prevents an infinite number of smaller & smaller peices 
-        // from instantiating
-        Component vox = pieces.GetComponent<VoxelPieces>();
-        Debug.Log("Component 2 to destroy: " + vox);
-        Destroy(vox);
-
-        //pieces.transform.localScale = transform.localScale / ScaleFactor;
-        //pieces.transform.localScale = new Vector3(newScaleX, newScaleY, newScaleZ);
-
         pieces.transform.position = transform.position + new Vector3(
             (newScaleX + x) - pScaleX,
             (newScaleY + y) - pScaleY,
             (newScaleZ + z) - pScaleZ);
-
+        Component vp = pieces.GetComponent<VoxelPieces>();
+        Debug.Log("Component 2 to destroy: " + vp);
+        Destroy(vp);
         pieces.AddComponent<DestroyPieces>();
 
         pieces.SetActive(true);
