@@ -54,15 +54,15 @@ public class VoxelPieces : MonoBehaviour
 
         if (mesh.material.name == "material_brickTEX (Instance)")
         {
-            newPiece.transform.localScale = new Vector3(0.4f, 0.1f, 0.1f);
+            newPiece.transform.localScale = new Vector3(0.2f, 0.1f, 0.1f);
         }
         if(mesh.material.name == "material_concreteTEX (Instance)")
         {
-            newPiece.transform.localScale = new Vector3(0.5f, 0.15f, 0.05f);
+            newPiece.transform.localScale = new Vector3(0.15f, 0.15f, 0.15f);
         }
         if(mesh.material.name == "material_glassTEX (Instance)")
         {
-            newPiece.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            newPiece.transform.localScale = new Vector3(0.1f, 0.1f, 0.025f);
         }
         if(mesh.material.name == "material_woodTEX (Instance)")
         {
