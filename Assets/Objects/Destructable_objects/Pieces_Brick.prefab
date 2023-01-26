@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6788804434715019596}
   - component: {fileID: 6788804434715019599}
   - component: {fileID: 6788804434715019598}
+  - component: {fileID: 2659157031901034294}
   m_Layer: 6
   m_Name: Pieces_Brick
   m_TagString: Pieces
@@ -32,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &6788804434715019596
 MeshFilter:
@@ -97,3 +98,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2659157031901034294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6788804434715019593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b54089ca00de4046a5386ee9b99433d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _piece: {fileID: 6788804434715019593}
+  _pieceCol: {fileID: 6788804434715019598}
+  _otherCol: []
+  _layers:
+    serializedVersion: 2
+    m_Bits: 64
+  i: 0
