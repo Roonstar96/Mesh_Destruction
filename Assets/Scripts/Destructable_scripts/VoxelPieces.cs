@@ -10,6 +10,7 @@ public class VoxelPieces : MonoBehaviour
     //NOTE: All variables for the object being destroyed, its debris
     // & other variables for instantiating the debris in the correct position
     // as well as adjusting the debirs ehaviour depending on its material
+    [Header("Voxel Piece variables")]
     [SerializeField] private GameObject parent;
     [SerializeField] private GameObject newPiece;
     [SerializeField] private MeshRenderer mesh;

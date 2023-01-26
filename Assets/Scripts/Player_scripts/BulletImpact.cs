@@ -7,9 +7,14 @@ using UnityEngine;
 //determine the effects of the 'explosion'
 public class BulletImpact : MonoBehaviour
 {
+    [Header("GameObject variables")]
     [SerializeField] private GameObject shooter;
     [SerializeField] private GameObject pieces;
     [SerializeField] private Rigidbody bullet;
+    [SerializeField] private int destroyTime;
+
+
+    [Header("Blast settings")]
     [SerializeField] private float blastRadius;
     [SerializeField] private float blastPower;
 
@@ -50,19 +55,18 @@ public class BulletImpact : MonoBehaviour
                 else
                 {
                     Debug.Log("Has RigidBody");
-                    StartCoroutine(ExplodeIntoSmallObjects(collision.contacts[0].point, collision.collider));
+                    ExplodeIntoSmallObjects(collision.contacts[0].point, collision.collider);
                 }
             }
         }
     }
 
     //NOTE: This function only concersn the single object hit, instead of multiple in a raduis
-    private IEnumerator ExplodeIntoSmallObjects(Vector3 blastPoint, Collider colHit)
+    private void ExplodeIntoSmallObjects(Vector3 blastPoint, Collider colHit)
     {
             colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
             colHit.GetComponent<Rigidbody>().AddExplosionForce(blastPower, blastPoint, blastRadius, 1, ForceMode.Impulse);
 
-            yield return new WaitForSeconds(1.0f);
             colHit.gameObject.AddComponent<VoxelPieces>();
             Destroy(this.gameObject);
     }
@@ -97,7 +101,7 @@ public class BulletImpact : MonoBehaviour
 
     IEnumerator DestroyPiece()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(destroyTime);
         Destroy(gameObject);
     }
 }

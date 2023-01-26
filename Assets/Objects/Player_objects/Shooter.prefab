@@ -162,4 +162,4 @@ MonoBehaviour:
   shooter: {fileID: 6412713273250475922}
   projectile: {fileID: 4344486793731568919, guid: f3a626a4bb8af2147b3a0b5f05397ad2, type: 3}
   shootPoint: {fileID: 6412713273250475924}
-  fireRate: 10
+  fireRate: 100

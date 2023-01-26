@@ -4,11 +4,12 @@ using UnityEngine;
 
 //SUMMARY: This script is responsible for generating mulitple small prefabs to replace and
 //simulate a larger object, so that it breaks into pieces when it is dedtroyed. 
-public class VoxelDestruct3 : MonoBehaviour
+public class VoxelDestruct : MonoBehaviour
 {
     //NOTE: All variables for the object being destroyed, its debris
     // & other variables for instantiating the debris in the correct position
     // as well as adjusting the debirs ehaviour depending on its material
+    [Header("Voxel Piece variables")]
     [SerializeField] private GameObject parent;
     [SerializeField] private GameObject newPiece;
 
