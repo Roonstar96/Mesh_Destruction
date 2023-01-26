@@ -109,7 +109,7 @@ public class VoxelPieces : MonoBehaviour
 
     //NOTE: Similar to the CreatePieces funciton in VoxelDestruction3 this function istead
     // add DestroyPiece script then removes the VoxelDestruction3 script from the cloned object
-    // and reduces their size based on their material
+    // and reduces their size based on their material.
     private void CreatePieces(float x, float y, float z)
     {
         GameObject pieces;
@@ -118,6 +118,7 @@ public class VoxelPieces : MonoBehaviour
             (newScaleX + x) - pScaleX,
             (newScaleY + y) - pScaleY,
             (newScaleZ + z) - pScaleZ);
+        pieces.GetComponent<Rigidbody>().velocity = parent.GetComponent<Rigidbody>().velocity;
         Component vp = pieces.GetComponent<VoxelPieces>();
         Debug.Log("Component 2 to destroy: " + vp);
         Destroy(vp);

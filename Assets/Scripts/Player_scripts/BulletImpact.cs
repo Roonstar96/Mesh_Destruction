@@ -50,29 +50,21 @@ public class BulletImpact : MonoBehaviour
                 else
                 {
                     Debug.Log("Has RigidBody");
-                    //StartCoroutine(ExplodeIntoSmallObjects(collision.collider));
-                    StartCoroutine(ExplodeIntoSmallObjects(collision.contacts[0].point));
+                    StartCoroutine(ExplodeIntoSmallObjects(collision.contacts[0].point, collision.collider));
                 }
             }
         }
     }
 
-    //NOTE: This fucntion adds forces to objects in a set radius from the bullets impact
-    private IEnumerator ExplodeIntoSmallObjects(Vector3 blastPoint)
+    //NOTE: This function only concersn the single object hit, instead of multiple in a raduis
+    private IEnumerator ExplodeIntoSmallObjects(Vector3 blastPoint, Collider colHit)
     {
-        collidersHit = Physics.OverlapSphere(blastPoint, blastRadius, blastLayers);
-
-        foreach (Collider colHit in collidersHit)
-        {
-            //Component dp = colHit.GetComponent<DestroyPieces>();
-            //Destroy(dp);
             colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
             colHit.GetComponent<Rigidbody>().AddExplosionForce(blastPower, blastPoint, blastRadius, 1, ForceMode.Impulse);
 
-            yield return new WaitForSeconds(0.75f);
+            yield return new WaitForSeconds(1.0f);
             colHit.gameObject.AddComponent<VoxelPieces>();
             Destroy(this.gameObject);
-        }
     }
 
     //NOTE: This funcitons is similar to the one abouve except adds a new script to the peices,
