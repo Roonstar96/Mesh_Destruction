@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 50599545176868283}
   - component: {fileID: 2618615865738781636}
   - component: {fileID: 2162436137213310931}
-  - component: {fileID: -7752892375882071880}
   m_Layer: 6
   m_Name: Pieces_concrete
   m_TagString: Pieces
@@ -98,22 +97,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-7752892375882071880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3366653227746109111}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6b54089ca00de4046a5386ee9b99433d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _piece: {fileID: 3366653227746109111}
-  _pieceCol: {fileID: 2162436137213310931}
-  _otherCol: []
-  _layers:
-    serializedVersion: 2
-    m_Bits: 64
-  i: 0
