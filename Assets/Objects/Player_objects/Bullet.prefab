@@ -131,7 +131,7 @@ MonoBehaviour:
   pieces: {fileID: 0}
   bullet: {fileID: -1814072700835575424}
   destroyTime: 5
-  blastRadius: 0.8
+  blastRadius: 0.4
   blastPower: 20
   blastLayers:
     serializedVersion: 2

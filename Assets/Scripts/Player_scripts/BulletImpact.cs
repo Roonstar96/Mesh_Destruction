@@ -37,8 +37,8 @@ public class BulletImpact : MonoBehaviour
     //TODO: Bet the bullets speed, have it so the collision detections only works at a certain speed and above
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.transform.root.CompareTag("Pieces"))
-        {   
+        if (collision.gameObject.layer == 6)
+        {
             if (collision.gameObject.GetComponent<Rigidbody>() == null)
             {
                 Debug.Log("Has no RigidBody");
@@ -59,13 +59,37 @@ public class BulletImpact : MonoBehaviour
                 }
             }
         }
+
+       // Old code, less efficient than ust checking the layer
+       /*if (collision.gameObject.transform.root.CompareTag("Pieces"))
+        {   
+            if (collision.gameObject.GetComponent<Rigidbody>() == null)
+            {
+                Debug.Log("Has no RigidBody");
+                ExplodeBigObjects(collision.contacts[0].point);
+            }
+
+            else if (collision.gameObject.GetComponent<Rigidbody>() == true)
+            {
+                if (collision.gameObject.GetComponent<DestroyPieces>() == true)
+                {
+                    Debug.Log("Has RigidBody & DP script");
+                    ExplodeSmallObjects(collision.contacts[0].point);
+                }
+                else
+                {
+                    Debug.Log("Has RigidBody");
+                    ExplodeIntoSmallObjects(collision.contacts[0].point, collision.collider);
+                }
+            }
+        }*/
     }
 
-    //NOTE: This function only concersn the single object hit, instead of multiple in a raduis
+    //NOTE: This function only effects a single object hit, instead of multiple
     private void ExplodeIntoSmallObjects(Vector3 blastPoint, Collider colHit)
     {
             colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
-            colHit.GetComponent<Rigidbody>().AddExplosionForce(blastPower, blastPoint, blastRadius, 1, ForceMode.Impulse);
+            colHit.GetComponent<Rigidbody>().AddExplosionForce(blastPower, blastPoint, blastRadius, blastPower, ForceMode.Impulse);
 
             colHit.gameObject.AddComponent<VoxelPieces>();
             Destroy(this.gameObject);
@@ -79,9 +103,13 @@ public class BulletImpact : MonoBehaviour
         foreach (Collider colHit in collidersHit)
         {
             colHit.gameObject.AddComponent<Rigidbody>();
-            //colHit.gameObject.AddComponent<DestroyPieces>();
             colHit.GetComponent<Rigidbody>().velocity = shooter.transform.forward * 5;
-            colHit.GetComponent<Rigidbody>().AddExplosionForce(blastPower, blastPoint, blastRadius, 1, ForceMode.Impulse);
+            colHit.GetComponent<Rigidbody>().AddExplosionForce(
+                blastPower, 
+                blastPoint, 
+                blastRadius, 
+                1, 
+                ForceMode.Impulse);
             Destroy(this.gameObject);
         }
     }

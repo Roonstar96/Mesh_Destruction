@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/SlicingRefactoring.unity
+    guid: 8434e127f2cff004bbf8e7858421433e
   m_configObjects: {}
